@@ -1,4 +1,4 @@
-
+# -- coding: utf-8 --
 # # (10в)
 # import math
 #
