@@ -1,8 +1,10 @@
 # -- coding: utf-8 --
-m=10000000
-for i in range(3):
-    c=int(input())
-    if (c<m):
-        m=c
-print(m)
 
+def F(a,b,c):
+    if a > b and c > b:
+        print(b)
+    if b > a and c > a:
+        print(a)
+    if b > c and a > c:
+        print(c)
+F(5,3,11)

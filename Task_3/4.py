@@ -1,8 +1,5 @@
 # -- coding: utf-8 --
-a=int(input())
-b=int(input())
-l=int(input())
-n=int(input())
-dlin=(2*n-1)*a+2* (n-1)+2*1
-print(dlin)
 
+def dlin(a, b, l, n):
+    return (2*n-1)*a+2* (n-1)+2*1
+print(dlin(3, 8, 7, 4))
