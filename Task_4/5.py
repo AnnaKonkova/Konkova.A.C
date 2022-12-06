@@ -1,6 +1,7 @@
 # -- coding: utf-8 --
-n = int(input())
-sum = 0
-for i in range(n):
-    sum += i ** 3
-    print(sum)
+def F(n):
+    sum = 0
+    for i in range(n):
+        sum += i ** 3
+        print(sum)
+F(5)
