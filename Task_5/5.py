@@ -1,17 +1,12 @@
 # -- coding: utf-8 --
-a=[]
-while True:
-    x=int(input())
-    if x==0:
-        break
-    a.append(x)
-print(a)
+def F():
+    a = 0
+    while True:
+        x = int(input())
+        if x == 0:
+            break
+        a += 1
+    print(a)
 
 
-
-
-
-
-
-
-
+F()
