@@ -1,4 +1,4 @@
-package ru.vsuet.relList;
+package ru.vsuet.rellist;
 
 import java.util.function.Predicate;
 
@@ -34,4 +34,8 @@ public interface IList {
      * @return
      */
     int get(int idx);
+
+
+
+
 }
