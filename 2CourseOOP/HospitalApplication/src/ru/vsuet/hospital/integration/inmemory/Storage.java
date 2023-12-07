@@ -27,13 +27,13 @@ public class Storage {
     }
 
     private void initBoxes() {
-        Patient f1 = new Patient(1L, "appl1", 100);
-        Patient f2 = new Patient(2L, "appl2", 100);
-        Patient f3 = new Patient(3L, "appl3", 100);
-        Patient f4 = new Patient(4L, "appl4", 100);
+        Patient f1 = new Patient(1L, "Дунцова Екатерина Сергеевна", 45,"Ж");
+        Patient f2 = new Patient(2L, "Надеждин Борис Борисович", 20,"М");
+        Patient f3 = new Patient(3L, "Явлинский Григорий Алексеевич", 56,"М");
+        Patient f4 = new Patient(4L, "Стрелков Игорь Иванович", 21,"М");
 
-        Department d1 = new Department(1L, "box 1", List.of(f1, f2));
-        Department d2 = new Department(2L, "box 2", List.of(f3, f4));
+        Department d1 = new Department(1L, "Department 1", List.of(f1, f2));
+        Department d2 = new Department(2L, "Department 2", List.of(f3, f4));
         departments.add(d1);
         departments.add(d2);
     }

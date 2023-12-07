@@ -37,7 +37,5 @@ public class InMemoryDpartmentRepository implements DepartmentRepository {
     @Override
     public void remove(Department department) {
         storage.departments.remove(department);
-
     }
-
 }

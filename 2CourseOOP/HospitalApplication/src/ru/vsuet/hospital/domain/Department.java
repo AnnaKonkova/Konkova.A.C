@@ -6,7 +6,6 @@ import java.util.Objects;
 public class Department {
     private Long id;
     private String title;
-
     private List<Patient> patients;
 
     public Department(Long id, String title, List<Patient> patients) {

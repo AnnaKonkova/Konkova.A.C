@@ -4,42 +4,43 @@ import java.util.Objects;
 
 public class Patient {
     private Long id;
-    private String name;
-    private int grnder;
+    private String fuulName;
+    private int age;
+    private String gender;
 
 
-    public Patient(Long id, String name, int grnder) {
-        this(name, grnder);
+    public Patient(Long id, String fuulName, int age,String gender) {
+        this(fuulName, age,gender);
         this.id = id;
     }
 
-    public Patient(String name, int grnder) {
-        this.name = name;
-        this.grnder = grnder;
+    public Patient(String fuulName, int age,String gender) {
+        this.fuulName = fuulName;
+        this.age = age;
+        this.gender =gender;
     }
 
-    public Long getId() {
-        return id;
+    public Long getId() {return id;}
+
+    public void setId(Long id) {this.id = id;}
+
+    public int getAge() {return age;}
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public String getGender() {return gender;}
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getFuulName() {
+        return fuulName;
     }
 
-    public int getGrnder() {
-        return grnder;
-    }
-
-    public void setGrnder(int grnder) {
-        this.grnder = grnder;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFuulName(String fuulName) {
+        this.fuulName = fuulName;
     }
 
 
