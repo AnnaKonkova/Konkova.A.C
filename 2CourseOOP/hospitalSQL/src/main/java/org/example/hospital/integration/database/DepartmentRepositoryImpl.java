@@ -21,34 +21,34 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public void addDepartment() {
-        System.out.println("Введите название группы:");
+        System.out.println("Введите название отделения:");
         String departmenName = scanner.nextLine();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO group_table (name) VALUES (?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO department_table (title) VALUES (?)");
             statement.setString(1, departmenName);
             statement.executeUpdate();
             statement.close();
-            System.out.println("Группа успешно создана.");
+            System.out.println("Отделение успешно созданно.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     @Override
     public void removeDepartment( ) {
-        System.out.println("Введите название группы для удаления:");
+        System.out.println("Введите название отделения для удаления:");
         String departmenName = scanner.nextLine();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM group_table WHERE name = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM department_table WHERE title = ?");
             statement.setString(1, departmenName);
             int rowsAffected = statement.executeUpdate();
             statement.close();
 
             if (rowsAffected > 0) {
-                System.out.println("Группа успешно удалена.");
+                System.out.println("Отделение успешно удалено.");
             } else {
-                System.out.println("Группа не найдена.");
+                System.out.println("Отделение не найдено.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Statement statement =
                      connection.createStatement()) {
             ResultSet resultSet =
-                    statement.executeQuery("select * from department.department");
+                    statement.executeQuery("select * from department_table");
             List<Department> departments = new ArrayList<>();
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
@@ -79,7 +79,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Statement statement =
                      connection.createStatement()) {
             ResultSet resultSet =
-                    statement.executeQuery("select * from boxes.boxes where id = " + id);
+                    statement.executeQuery("select * from department where id = " + id);
             List<Department> departments = new ArrayList<>();
             while (resultSet.next()) {
                 long uid = resultSet.getLong("id");
@@ -107,7 +107,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             String gender = scanner.nextLine();
 
             try {
-                PreparedStatement statement = connection.prepareStatement("INSERT INTO student_table (name, group_name) VALUES (?, ?)");
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO patient_table (fuulName, age,gender,departmentName) VALUES (?, ?)");
                 statement.setString(1, fuulName);
                 statement.setInt(2, age);
                 statement.setString(3, gender);
@@ -131,7 +131,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         int age = scanner.nextInt();
         String gender = scanner.nextLine();
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM Patient_table WHERE name = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM Patient_table WHERE fuulName = ?");
             statement.setString(1, fuulName);
             statement.setInt(2, age);
             statement.setString(3, gender);
