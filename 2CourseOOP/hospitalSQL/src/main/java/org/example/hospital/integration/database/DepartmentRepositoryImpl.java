@@ -25,7 +25,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         String departmenName = scanner.nextLine();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO department_table (title) VALUES (?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Departments (title, patient_count) VALUES (?, ?)");
             statement.setString(1, departmenName);
             statement.executeUpdate();
             statement.close();
@@ -40,7 +40,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         String departmenName = scanner.nextLine();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM department_table WHERE title = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM Departments WHERE id = ?");
             statement.setString(1, departmenName);
             int rowsAffected = statement.executeUpdate();
             statement.close();
@@ -60,7 +60,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Statement statement =
                      connection.createStatement()) {
             ResultSet resultSet =
-                    statement.executeQuery("select * from department_table");
+                    statement.executeQuery("SELECT * FROM Departments");
             List<Department> departments = new ArrayList<>();
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
@@ -107,7 +107,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             String gender = scanner.nextLine();
 
             try {
-                PreparedStatement statement = connection.prepareStatement("INSERT INTO patient_table (fuulName, age,gender,departmentName) VALUES (?, ?)");
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO Patients (fuulName, age, gender, department_id) VALUES (?, ?, ?, ?)");
                 statement.setString(1, fuulName);
                 statement.setInt(2, age);
                 statement.setString(3, gender);
@@ -131,7 +131,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         int age = scanner.nextInt();
         String gender = scanner.nextLine();
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM Patient_table WHERE fuulName = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM Patient WHERE fuulName = ?");
             statement.setString(1, fuulName);
             statement.setInt(2, age);
             statement.setString(3, gender);
