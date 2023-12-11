@@ -22,11 +22,11 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public void addDepartment() {
         System.out.println("Введите название отделения:");
-        String departmenName = scanner.nextLine();
+        String title = scanner.nextLine();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Departments (title, patient_count) VALUES (?, ?)");
-            statement.setString(1, departmenName);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO department_table (title) VALUES (?)");
+            statement.setString(1, title);
             statement.executeUpdate();
             statement.close();
             System.out.println("Отделение успешно созданно.");
@@ -37,11 +37,11 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public void removeDepartment( ) {
         System.out.println("Введите название отделения для удаления:");
-        String departmenName = scanner.nextLine();
+        String title = scanner.nextLine();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM Departments WHERE id = ?");
-            statement.setString(1, departmenName);
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM department_table WHERE title = ?");
+            statement.setString(1, title);
             int rowsAffected = statement.executeUpdate();
             statement.close();
 
@@ -60,7 +60,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Statement statement =
                      connection.createStatement()) {
             ResultSet resultSet =
-                    statement.executeQuery("SELECT * FROM Departments");
+                    statement.executeQuery("SELECT * FROM department_table");
             List<Department> departments = new ArrayList<>();
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
@@ -79,7 +79,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Statement statement =
                      connection.createStatement()) {
             ResultSet resultSet =
-                    statement.executeQuery("select * from department where id = " + id);
+                    statement.executeQuery("SELECT * FROM department_table WHERE department_id = " + id);
             List<Department> departments = new ArrayList<>();
             while (resultSet.next()) {
                 long uid = resultSet.getLong("id");
@@ -95,53 +95,53 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     }
     @Override
     public void addPatients() {
-        System.out.println("Введите название группы, в которую добавить студента:");
-        String departmentName = scanner.nextLine();
+        System.out.println("Введите название отделения, в которое добавить пациента: ");
+        String title = scanner.nextLine();
 
         List<Department> departmentNames = listD();
 
-        if (departmentNames.contains(departmentName)) {
-            System.out.println("Введите имя студента:");
+        if (departmentNames.contains(title)) {
+            System.out.println("Введите имя пациента:");
             String fuulName = scanner.nextLine();
             int age = scanner.nextInt();
             String gender = scanner.nextLine();
 
             try {
-                PreparedStatement statement = connection.prepareStatement("INSERT INTO Patients (fuulName, age, gender, department_id) VALUES (?, ?, ?, ?)");
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO patient_table (id, fuulName, age, gender, department_title) VALUES (?, ?, ?, ?, ?)");
                 statement.setString(1, fuulName);
                 statement.setInt(2, age);
                 statement.setString(3, gender);
-                statement.setString(4, departmentName);
+                statement.setString(4, title);
                 /*department.setCountOfPatients(department.getCountOfPatients()+1);*/
                 statement.executeUpdate();
                 statement.close();
-                System.out.println("Студент успешно добавлен в группу.");
+                System.out.println("пациент  успешно добавлен в отделение.");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Группа не найдена.");
+            System.out.println("Отделение не найдено.");
         }
 
     }
     @Override
     public void removePatients( ) {
-        System.out.println("Введите имя студента для удаления:");
+        System.out.println("Введите ФИО пациента для удаления:");
         String fuulName = scanner.nextLine();
         int age = scanner.nextInt();
         String gender = scanner.nextLine();
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM Patient WHERE fuulName = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM patient_table WHERE fuulName = ?");
             statement.setString(1, fuulName);
-            statement.setInt(2, age);
-            statement.setString(3, gender);
+          /*  statement.setInt(2, age);
+            statement.setString(3, gender);*/
 
             int rowsAffected = statement.executeUpdate();
             statement.close();
             if (rowsAffected > 0) {
-                System.out.println("Студент успешно удален.");
+                System.out.println("Пациент успешно удален.");
             } else {
-                System.out.println("Студент не найден.");
+                System.out.println("Пациент не найден.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,7 +152,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         System.out.println("Список пациентов:");
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM department_table");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM patient_table WHERE department_title = ?");
             List<Patient> patients = new ArrayList<>();
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");

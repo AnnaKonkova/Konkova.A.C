@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
-    public static final String DB_URL = "jdbc:mysql://localhost:3306";
+    public static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/hospitall";
     public static final String USER = "root";
     public static final String PASSWORD = "Iusaz04##";
     private Connection connection;
@@ -14,7 +14,7 @@ public class ConnectionManager {
         try {
             connection =
                     DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            System.out.println("К базе подключились ");
+            System.out.println("Connected to the database....");
         } catch (SQLException e) {
             throw new RuntimeException("Error while db connecting: " + e.getMessage());
         }
