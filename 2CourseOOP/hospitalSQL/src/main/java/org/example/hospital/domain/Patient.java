@@ -7,46 +7,41 @@ public class Patient {
     private String fuulName;
     private int age;
     private String gender;
-    private Department department;
+    private String title;
 
 
-    public Patient(Long id, String fuulName, int age,String gender, Department department) {
-        this(fuulName, age, gender,department);
+    public Patient(Long id, String fuulName, int age,String gender, String title) {// тут был Department title
+        this(fuulName, age, gender, String.valueOf(title));
         this.id = id;
        /* department.setCountOfPatients(department.getCountOfPatients()+1);*/
 
     }
 
-    public Patient(String fuulName, int age,String gender,Department department) {
+    public Patient(String fuulName, int age,String gender,String title) {
         this.fuulName = fuulName;
         this.age = age;
         this.gender =gender;
-        this.department=department;
+        this.title=title;
 
     }
 
     public Long getId() {return id;}
-
-    public void setId(Long id) {this.id = id;}
-
     public int getAge() {return age;}
-
-    public void setAge(int age) {
-        this.age = age;
-    }
     public String getGender() {return gender;}
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getFuulName() {
         return fuulName;
     }
-
-    public void setFuulName(String fuulName) {
-        this.fuulName = fuulName;
+    public String getTitle() {return title;}
+    public void setId(int id) {
     }
+
+    public void setFullName(String fullName) {}
+
+    public void setAge(int age) {}
+
+    public void setGender(String gender) {}
+
+    public void setDepartmentTitle(String departmentTitle) {}
 
 
     @Override

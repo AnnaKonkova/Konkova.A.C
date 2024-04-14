@@ -4,12 +4,11 @@ import org.example.hospital.domain.Department;
 import org.example.hospital.domain.Patient;
 
 import java.util.List;
-import java.util.Scanner;
 
 //контракт
 public interface DepartmentRepository {
 
-    Department findD(Long id);
+    String findD();
     List<Department>listD();
     List<Patient>listP();
     void addDepartment();

@@ -26,6 +26,7 @@ public class Main {
             System.out.println("4. Создать пациента");
             System.out.println("5. Удалить пациента");
             System.out.println("6. Просмотреть пациентов в отделении");
+            System.out.println("7. Найти отделение по его ID");
             System.out.println("0. Выход");
 
             int choice = scanner.nextInt();
@@ -39,7 +40,8 @@ public class Main {
                 case 4 -> service.addPatients(scanner);
                 case 5 -> service.removePatient(scanner);
                 case 6 -> service.getAllPati()
-                        .forEach(b -> System.out.println("Id: " + b.getId() + ", fuulName: " + b.getFuulName() + ", age: " + b.getAge() + ", gender: " + b.getGender()));
+                        .forEach(b -> System.out.println("Id: " + b.getId() + ", fuulName: " + b.getFuulName() + ", age: " + b.getAge() + ", gender: " + b.getGender()+", gender: " + b.getTitle() ));
+                case 7-> service.getByIdDep();
                 case 0 -> running = false;
                 default -> System.out.println("Некорректный выбор. Попробуйте еще раз.");
             }
