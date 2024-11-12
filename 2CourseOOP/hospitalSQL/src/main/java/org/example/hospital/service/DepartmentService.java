@@ -15,7 +15,7 @@ public class DepartmentService {
         this.repository = repository;
     }
 
-    public Department getByIdDep(Long id) {return repository.findD(id);}
+    public String  getByIdDep() {return  repository.findD();}
     public void addDepartmentt(Scanner scanner){
         repository.addDepartment();
     }

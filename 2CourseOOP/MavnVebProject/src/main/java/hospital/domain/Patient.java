@@ -1,4 +1,4 @@
-package org.example.hospital.domain;
+package hospital.domain;
 
 import java.util.Objects;
 
